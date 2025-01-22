@@ -67,6 +67,9 @@ function App() {
             signers={[NFIDW,Plug, InternetIdentity, Stoic]}
             theme={IdentityKitTheme.SYSTEM} // LIGHT, DARK, SYSTEM (by default)
             authType={IdentityKitAuthType.DELEGATION} // ACCOUNTS, DELEGATION (by default)
+            onConnectFailure={(e) => {console.log(e)}}
+            onConnectSuccess={() => {console.log('Connected')}}
+            onDisconnect={() => {console.log('Disconnected')}}
             >
             <ConnectWallet/>
           </IdentityKitProvider>
