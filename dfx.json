@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "internet_identity_backend": {
+      "candid": "src/internet_identity_backend/internet_identity_backend.did",
+      "package": "internet_identity_backend",
+      "type": "rust"
+    },
+    "internet_identity_frontend": {
+      "dependencies": [
+        "internet_identity_backend"
+      ],
+      "source": [
+        "src/internet_identity_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "internet_identity_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
