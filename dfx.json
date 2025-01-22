@@ -5,6 +5,10 @@
       "package": "internet_identity_backend",
       "type": "rust"
     },
+    "internet_identity": {
+      "type": "pull",
+      "id": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+    },
     "internet_identity_frontend": {
       "dependencies": [
         "internet_identity_backend"

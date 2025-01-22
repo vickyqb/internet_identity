@@ -15,6 +15,7 @@
 
 # rust
 target/
+deps/
 
 # frontend code
 node_modules/

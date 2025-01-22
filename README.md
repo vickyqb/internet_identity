@@ -1,4 +1,4 @@
-# `internet_identity`
+# `Integration of internet_identity and NFID in ICP`
 
 Welcome to your new `internet_identity` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
 

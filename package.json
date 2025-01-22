@@ -14,5 +14,9 @@
   "type": "module",
   "workspaces": [
     "src/internet_identity_frontend"
-  ]
+  ],
+  "dependencies": {
+    "@dfinity/auth-client": "^2.2.0",
+    "@nfid/identitykit": "^1.0.7"
+  }
 }
