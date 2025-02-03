@@ -30,11 +30,22 @@ function App() {
         console.error(error);
       },
       onSuccess: () => {
-        setAuthenticated(true);
-        console.log('Logged in');
+        clientInfo(authClient);
       },
     });
   }
+  const clientInfo = async (client) => {
+    const isAuthenticated = await client.isAuthenticated();
+    const identity = authClient.getIdentity();
+    console.log("identity : ",identity);
+    const principal = identity.getPrincipal();
+    console.log("Principal : ", principal.toString())
+    const publicKey = identity.getPublicKey().toDer();
+    console.log("Public Key (DER format): ", publicKey);
+    setAuthClient(client);
+  }
+  
+
   const handleLogout = async ()=> {
     await authClient?.logout();
     setAuthenticated(false);
