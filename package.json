@@ -16,6 +16,7 @@
     "src/internet_identity_frontend"
   ],
   "dependencies": {
+    "@dfinity/agent": "^2.2.0",
     "@dfinity/auth-client": "^2.2.0",
     "@nfid/identitykit": "^1.0.7"
   }

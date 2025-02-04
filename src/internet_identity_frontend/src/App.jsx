@@ -1,6 +1,7 @@
 import { useState ,useEffect} from 'react';
 import { internet_identity_backend } from '../../declarations/internet_identity_backend';
 import {AuthClient} from '@dfinity/auth-client';
+import { Actor } from '@dfinity/agent';
 import { IdentityKitProvider, IdentityKitTheme } from "@nfid/identitykit/react"
 import { NFIDW, IdentityKitAuthType ,Plug, InternetIdentity, Stoic} from "@nfid/identitykit"
 import "@nfid/identitykit/react/styles.css"
@@ -11,11 +12,12 @@ function App() {
   const [greeting, setGreeting] = useState('');
   const [authClient, setAuthClient] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
+  const [identity, setIdentity] = useState(null);
 
   const handleSubmit = (event)=> {
     event.preventDefault();
     const name = event.target.elements.name.value;
-    ii_icp_backend.greet(name).then((greeting) => {
+    internet_identity_backend.greet(name).then((greeting) => {
       setGreeting(greeting);
     });
     return false;
@@ -35,21 +37,29 @@ function App() {
     });
   }
   const clientInfo = async (client) => {
-    const isAuthenticated = await client.isAuthenticated();
-    const identity = authClient.getIdentity();
-    console.log("identity : ",identity);
-    const principal = identity.getPrincipal();
-    console.log("Principal : ", principal.toString())
-    const publicKey = identity.getPublicKey().toDer();
-    console.log("Public Key (DER format): ", publicKey);
+    // const isAuthenticated = await client.isAuthenticated();
+    // const identity = authClient.getIdentity();
+    // console.log("identity : ",identity);
+    // const principal = identity.getPrincipal();
+    // console.log("Principal : ", principal.toString())
+    // const publicKey = identity.getPublicKey().toDer();
+    // console.log("Public Key (DER format): ", publicKey);
     setAuthClient(client);
+    updateIdentity(client);
   }
   
+  const updateIdentity = async (client) => {
+    const current_identity = client.getIdentity();
+    setIdentity(current_identity);
+    Actor.agentOf(internet_identity_backend).replaceIdentity(identity);
+    setAuthenticated(await client.isAuthenticated());
+  };
 
   const handleLogout = async ()=> {
     await authClient?.logout();
     setAuthenticated(false);
     console.log('Logged out');
+    setIdentity(null);
   }
 
   useEffect(() => {
